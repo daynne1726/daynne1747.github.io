@@ -1,4 +1,4 @@
-//broker
+// broker
 var btnConnect = document.getElementById('connect');
 var btnDisConnect = document.getElementById('disconnect');
 var broker = document.getElementById('broker');
