@@ -47,8 +47,8 @@ btnConnect.addEventListener('click', function (e){
   btnUnsubscribe.addEventListener('click', function (e) {
     e.preventDefault();
     client.unsubscribe("" + subTopic.value);
-    btnUnsubscribe.disabled = true;
-    btnSubscribe.disabled = false;
+    // btnUnsubscribe.disabled = true;
+    // btnSubscribe.disabled = false;
     console.log("Unsubscribe to mqtt/" + subTopic.value)
   })
 
