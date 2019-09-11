@@ -26,7 +26,7 @@ btnConnect.addEventListener('click', function (e){
   btnSubscribe.addEventListener('click', function (e) {
     e.preventDefault();
     console.log("Subscribe { topic: " + document.getElementById('subTopic').value + " }");
-    client.subscribe("mqtt/" + subTopic.value);
+    client.subscribe("" + subTopic.value);
 
     let tbl = document.getElementById('subscriber');
     let tbody = document.getElementById('submsg');
@@ -46,7 +46,7 @@ btnConnect.addEventListener('click', function (e){
 
   btnUnsubscribe.addEventListener('click', function (e) {
     e.preventDefault();
-    client.unsubscribe("mqtt/" + subTopic.value);
+    client.unsubscribe("" + subTopic.value);
     btnUnsubscribe.disabled = true;
     btnSubscribe.disabled = false;
     console.log("Unsubscribe to mqtt/" + subTopic.value)
@@ -75,9 +75,9 @@ btnConnect.addEventListener('click', function (e){
 
 
   client.on("message", function (topic, payload) {
-    let finalTopic = topic.slice(5);
-    console.log([finalTopic, payload].join(": "));
-    console.log("Received { topic: " + finalTopic + "; payload: " + payload + " }");
+    // let finalTopic = topic.slice(5);
+    console.log([topic, payload].join(": "));
+    console.log("Received { topic: " + topic + "; payload: " + payload + " }");
   //   console.log("Published { topic: " + document.getElementById('pubTopic').value
   // + "; payload: " + document.getElementById('pubPayload').value + " }");
     let tbl = document.getElementById('receiver');
@@ -86,7 +86,7 @@ btnConnect.addEventListener('click', function (e){
     let msgTopic = document.createElement('td');
     let msgPayload = document.createElement('td');
     let msgTime = document.createElement('td');
-    msgTopic.appendChild(document.createTextNode(finalTopic));
+    msgTopic.appendChild(document.createTextNode(topic));
     msgPayload.appendChild(document.createTextNode(payload));
     msgTime.appendChild(document.createTextNode(moment().format('llll')));
     tr.appendChild(msgTopic);
@@ -102,7 +102,7 @@ btnConnect.addEventListener('click', function (e){
 
   btnPublish.addEventListener('click', function (e) {
     e.preventDefault();
-    client.publish("mqtt/" + pubTopic.value, pubPayload.value);
+    client.publish("" + pubTopic.value, pubPayload.value);
     console.log("Publish { topic: "+pubTopic.value+"; payload: "+ pubPayload.value+" }");
     let tbl = document.getElementById('publisher');
     let tbody = document.getElementById('pubmsg');
